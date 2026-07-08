@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bookworm Chronicles | Deep, Immersive Fiction</title>
+    <style>
+    /* Design System & Variables */
+    :root {
+    --bg-main: #090d16; /* Deep academic dark background */
+    --bg-surface: #172033; /* Card and section background */
+    --accent-gold: #eab308; /* Rich literary gold accent */
+    --accent-hover: #ca8a04; /* Darker gold for interaction */
+    --text-primary: #f8fafc; /* Crisp white text */
+    --text-secondary: #94a3b8; /* Muted gray text */
+    --border-color: #273549; /* Subtle divider lines */
+    }
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-top: 80px; /* Offset for sticky nav + added breathing room */
+    scroll-behavior: smooth; /* Smooth scrolling when clicking anchor links */
+    }
+
+    .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    }
+
+    /* Utility Styles */
+    .accent { color: var(--accent-gold); }
+    
+    /* Navigation Bar */
+    nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(9, 13, 22, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    }
+
+    .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    }
+
+    .logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    text-decoration: none;
+    }
+
+    /* Hero Section */
+    .hero {
+    padding: 6rem 0;
+    position: relative;
+    background: radial-gradient(circle at 80% 20%, rgba(234, 179, 8, 0.06) 0%, transparent 50%);
+    }
+
+    .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+    }
+
+    @media (max-width: 768px) {
+    .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+    }
+    }
+
+    .tagline {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: block;
+    }
+
+    .hero-text h1 {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    }
+
+    @media (max-width: 480px) {
+    .hero-text h1 {
+    font-size: 2.5rem; /* Better scaling on smaller phones */
+    }
+    }
+
+    .hero-text p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    }
+
+    @media (max-width: 768px) {
+    .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+    }
+    }
+
+    .btn {
+    display: inline-block;
+    background-color: var(--accent-gold);
+    color: #000000;
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    }
+
+    .btn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    }
+
+    /* Premium Book Mockup */
+    .book-wrapper {
+    display: flex;
+    justify-content: center;
+    }
+
+    .book-3d {
+    width: 280px;
+    height: 420px;
+    background: linear-gradient(135deg, #172033 0%, #0d1321 100%);
+    border-radius: 4px 16px 16px 4px;
+    box-shadow: 25px 25px 50px rgba(0, 0, 0, 0.6),
+    -5px 0 10px rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-left: 6px solid rgba(234, 179, 8, 0.5);
+    position: relative;
+    }
+
+    .book-3d::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Showcase Features */
+    .showcase {
+    padding: 6rem 0;
+    background-color: #0d1321;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    }
+
+    .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    }
+
+    .feature-box {
+    padding: 2.5rem;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    }
+
+    .feature-box:hover {
+    border-color: var(--accent-gold);
+    }
+
+    .feature-box h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    }
+
+    .feature-box p {
+    color: var(--text-secondary);
+    }
+
+    /* Studio/Brand Overview */
+    .studio-profile {
+    padding: 6rem 0;
+    position: relative;
+    }
+
+    .profile-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    }
+
+    .profile-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    }
+
+    .profile-content p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    }
+
+    /* Premium Pricing Section */
+    .pricing-section {
+    padding: 6rem 0;
+    background-color: #0d1321;
+    border-top: 1px solid var(--border-color);
+    }
+
+    .premium-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--bg-main);
+    border: 1px solid var(--accent-gold);
+    border-radius: 12px;
+    padding: 4rem 3rem;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .price-tag {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 1.5rem 0;
+    letter-spacing: -0.03em;
+    }
+
+    .perks-list {
+    list-style: none;
+    text-align: left;
+    margin: 2rem 0 3rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 2rem 0;
+    }
+
+    .perks-list li {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    }
+
+    .perks-list li::before {
+    content: "📖";
+    font-size: 0.9rem;
+    }
+
+    footer {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation header -->
+    <nav>
+    <div class="container nav-container">
+    <a href="#" class="logo">The Bookworm<span class="accent"> Chronicles</span></a>
+    <a href="https://payhip.com/Hanningtone" class="btn" style="padding: 0.5rem 1.25rem; font-size: 0.75rem;">Enter Library</a>
+    </div>
+    </nav>
+
+    <!-- Hero Showcase Area -->
+    <header class="hero">
+    <div class="container hero-grid">
+    <div class="hero-text">
+    <span class="tagline accent">Escape Into Great Stories</span>
+    <h1>Lose Yourself in a New World.</h1>
+    <p>Welcome to The Bookworm Chronicles. We publish meticulously crafted, rich, and high-stakes fictional adventure tales engineered to captivate true lovers of reading.</p>
+    <a href="https://payhip.com/Hanningtone" class="btn">Acquire Digital Edition</a>
+    </div>
+    <div class="book-wrapper">
+    <div class="book-3d">
+    <span style="font-size: 0.75rem; letter-spacing: 3px; font-weight: bold; color: var(--accent-gold);">FEATURED CHRONICLE</span>
+    <h2 style="font-size: 1.75rem; font-weight: 900; letter-spacing: 1px; line-height: 1.2; margin-top: 2rem;">THE HORIZON FAULT</h2>
+    <p style="font-size: 0.8rem; letter-spacing: 1px; color: var(--text-secondary);">BOOKWORM CHRONICLES PRESS</p>
+    </div>
+    </div>
+    </div>
+    </header>
+
+    <!-- Literary Content Highlights -->
+    <section class="showcase">
+    <div class="container">
+    <div class="section-header">
+    <h2>What to Expect Inside</h2>
+    </div>
+    <div class="grid-3">
+    <div class="feature-box">
+    <h3>Rich Worldbuilding</h3>
+    <p>Immerse yourself in deeply atmospheric, vivid environments that feel less like pages and more like places you are actively exploring.</p>
+    </div>
+    <div class="feature-box">
+    <h3>Uncompromising Stakes</h3>
+    <p>No convenient plot armor. Characters face brutal dilemmas, complex moral struggles, and unforgiving journeys where nothing is guaranteed.</p>
+    </div>
+    <div class="feature-box">
+    <h3>Flawless eReader Formats</h3>
+    <p>Engineered beautifully for Kindle, Kobo, tablets, and phones. Completely cross-compatible across all reading apps out of the box.</p>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- Brand Overview -->
+    <section class="studio-profile">
+    <div class="container">
+    <div class="profile-content">
+    <span class="accent" style="font-size: 2rem; display: block; margin-bottom: 1rem;">📖</span>
+    <h2>Behind the Chronicles</h2>
+    <p>The Bookworm Chronicles is an independent imprint dedicated to pioneering immersive, narrative-driven fictional entertainment. By stripping away corporate constraints, we build legendary, high-contrast lore landscapes that resonate deeply with passionate readers of fast-paced, high-stakes adventure storytelling.</p>
+    </div>
+    </div>
+    </section>
+
+    <!-- Premium Purchase Card -->
+    <section id="store" class="pricing-section">
+    <div class="container">
+    <div class="premium-card">
+    <span style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: bold;" class="accent">Immediate Access</span>
+    <h3 style="font-size: 1.75rem; margin-top: 0.5rem;">Digital Reader Bundle</h3>
+    <div class="price-tag">$35.00</div>
+    
+    <ul class="perks-list">
+    <li>Unabridged eBook in secure PDF format</li>
+    <li>Optimized high-fidelity EPUB for standard eReaders</li>
+    <li>Exclusive digital map detailing the world geography</li>
+    <li>Lifetime access to any future textual revisions</li>
+    </ul>
+
+    <!-- Payhip link integrated directly here -->
+    <a href="https://payhip.com/Hanningtone" class="btn" style="width: 100%; display: block; text-align: center;">Download Instantly</a>
+    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 1.2rem;">Processed via industry-standard secure payment networks.</p>
+    </div>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+    <div class="container">
+    <p>&copy; 2026 THE BOOKWORM CHRONICLES. ALL RIGHTS RESERVED.</p>
+    </div>
+    </footer>
+
+</body>
+</html>
